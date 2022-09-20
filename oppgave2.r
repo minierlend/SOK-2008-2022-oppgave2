@@ -26,17 +26,17 @@ library(tidyverse)  # the tidyverse package
 
 
 union <- read_csv("https://uit-sok-2008-h22.github.io/Assets/union_unempl.csv") #This loads the data with information about the variables of interest
-View(union) #Displays the data
+
 #To combine the unemployment and union data with the map data, we merge on country name. 
 #We face two problems here: 1) United Kingdom is called "UK" in the map data, 2) the variable "country" is called "region" in the map data. We need to change this.
 
 #Changing the name of a single observation. The below code changes all observations called "United Kingdom" to "UK" in the union data. 
 union$country <- gsub("United Kingdom", "UK", union$country)
-View(union) 
+ 
 
 # Renaming a variable. The below code renames the variable "Country" to "Region".
 names(union)[names(union) == "country"] <- "region"
-View(union) 
+
 
 # Creating a new variable. To create a map showing "Excess coverage", you need to create a new variable. The below code shows how to create a new variable in R. 
 union$newvar2<-union$var1 + union$var2 #A sum
@@ -66,7 +66,7 @@ arbeidsledigghetsrate <- ggplot(map1, aes(x = long, y = lat, group = group))+
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
         rect=element_blank())
-  
+
 
 arbeidsledigghetsrate
 
@@ -87,7 +87,9 @@ fagforeningsdensitet
 
 excess_coverage <- ggplot(map1, aes(x = long, y = lat, group = group))+
   geom_polygon(aes(fill = coverage), color = 'black')+
-  scale_fill_gradient(name = "excess_coverage", low ="green", high= "red", na.value= "grey")+
+  scale_fill_gradient(name = "Andelen av arbeidsstyrken 
+  som omfattes av forhandlet
+                      lønn men er ikke medlemmer", low ="green", high= "red", na.value= "grey")+
   theme(axis.text.x  = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks = element_blank(),
