@@ -58,26 +58,55 @@ map1 <- map %>% filter(!is.na(map$density))
 
 
 arbeidsledigghetsrate <- ggplot(map1, aes(x = long, y = lat, group = group))+
-  geom_polygon(aes(fill = unempl), color = 'black')
+  geom_polygon(aes(fill = unempl), color = 'black')+
+  scale_fill_gradient(name = "arbeidsledigghetsrate", low ="green", high= "red", na.value= "grey")+
+  theme(axis.text.x  = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        rect=element_blank())
+  
 
 arbeidsledigghetsrate
 
 ## fagforeningsdensitet
 fagforeningsdensitet <- ggplot(map1, aes(x = long, y = lat, group = group))+
-  geom_polygon(aes(fill = density), color = 'black')
+  geom_polygon(aes(fill = density), color = 'black')+
+  scale_fill_gradient(name = "Fagforeningdesititet", low ="red", high= "green", na.value= "grey")+
+  theme(axis.text.x  = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        rect=element_blank())
 
 fagforeningsdensitet
 
 ##excess coverage 
 
 excess_coverage <- ggplot(map1, aes(x = long, y = lat, group = group))+
-  geom_polygon(aes(fill = coverage), color = 'black')
+  geom_polygon(aes(fill = coverage), color = 'black')+
+  scale_fill_gradient(name = "excess_coverage", low ="green", high= "red", na.value= "grey")+
+  theme(axis.text.x  = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        rect=element_blank())
 
 excess_coverage
 
-## Kordinering av l�nnsfastsettelse
+## Kordinering av lønnsfastsettelse
 
 coord <- ggplot(map1, aes(x = long, y = lat, group = group))+
-  geom_polygon(aes(fill = coord), color = 'black')
+  geom_polygon(aes(fill = coord), color = 'black')+
+  scale_fill_brewer(name="Koordinering av lønnfastsettelse", palette="Set1")+
+  theme(axis.text.x  = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        rect=element_blank())
 
 coord
